@@ -1,29 +1,79 @@
-.Accueil {
-  text-align: center;
-  margin-top: 0;
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #E9F1FA; /* Bleu clair */
 }
 
-.Navbar {
-  background-color: #282c34;
-  padding: 10px 0;
-  margin-bottom: 40px; 
+.accueil-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
-.Navbar ul {
+
+.navbar {
+  background-color: #00ABE4; /* Bleu vif */
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.nav-links {
   list-style: none;
   display: flex;
-  justify-content: center;
+  gap: 2rem;
   margin: 0;
   padding: 0;
 }
-.Navbar li {
-  margin: 0 15px;
-}
-.Navbar a {
-  color: #61dafb;
+
+.nav-links li a {
+  color: white;
   text-decoration: none;
-  font-weight: bold;
-  font-size: 18px;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
 }
-.Navbar a:hover {
-  text-decoration: underline;
+
+.nav-links li a:hover {
+  opacity: 0.8;
+}
+
+.hero-section {
+  background-color: #E9F1FA; /* Bleu clair */
+  color: #00ABE4; /* Bleu vif pour le texte */
+  padding: 5rem 2rem;
+  text-align: center;
+  flex-grow: 1;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.hero-content p {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  color: #005a78; /* Bleu plus foncé pour lisibilité */
+}
+
+.cta-button {
+  background-color: #00ABE4; /* Bleu vif */
+  color: white;
+  padding: 0.75rem 1.5rem;
+  font-weight: bold;
+  border-radius: 8px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #008FC5; /* Ton plus foncé du bleu vif */
 }
