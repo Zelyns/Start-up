@@ -1,0 +1,29 @@
+.Accueil {
+  text-align: center;
+  margin-top: 0;
+}
+
+.Navbar {
+  background-color: #282c34;
+  padding: 10px 0;
+  margin-bottom: 40px; 
+}
+.Navbar ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+.Navbar li {
+  margin: 0 15px;
+}
+.Navbar a {
+  color: #61dafb;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 18px;
+}
+.Navbar a:hover {
+  text-decoration: underline;
+}
