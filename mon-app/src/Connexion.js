@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Accueil.css';
 
-function Connection() {
+function Connexion() {
   const [login, setLogin] = useState({ email: '', password: '' });
   const [register, setRegister] = useState({ nom: '', email: '', password: '', confirmPassword: '' });
   const [message, setMessage] = useState('');
@@ -71,4 +71,4 @@ function Connection() {
   );
 }
 
-export default Connection;
+export default Connexion;

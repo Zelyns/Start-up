@@ -9,7 +9,7 @@ function Navbar() {
       <ul className="nav-links">
         <li><Link to="/">Accueil</Link></li>
         <li><a href="#">À propos</a></li>
-        <li><Link to="/connection">Connection</Link></li>
+        <li><Link to="/connexion">Connexion</Link></li>
       </ul>
     </nav>
   );

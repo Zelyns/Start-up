@@ -2,7 +2,7 @@
 import './App.css';
 import Accueil from './Accueil';
 import Navbar from './Navbar';
-import Connection from './Connection';
+import Connexion from './Connexion';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Accueil />} />
-          <Route path="/connection" element={<Connection />} />
+          <Route path="/connexion" element={<Connexion />} />
         </Routes>
       </div>
     </Router>
