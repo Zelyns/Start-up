@@ -1,18 +1,10 @@
 import React from 'react';
 import './Accueil.css';
+import Navbar from './Navbar';
 
 function Accueil() {
   return (
     <div className="accueil-container">
-      <nav className="navbar">
-        <div className="logo">OrienTech</div>
-        <ul className="nav-links">
-          <li><a href="#">Accueil</a></li>
-          <li><a href="#">À propos</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
-      </nav>
-
       <header className="hero-section">
         <div className="hero-content">
           <h1>Découvre ton avenir dès aujourd’hui</h1>
