@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import './Accueil.css';
 
-function Connexion() {
+function Connexion({ setUser }) {
   const [login, setLogin] = useState({ email: '', password: '' });
-  const [register, setRegister] = useState({ nom: '', email: '', password: '', confirmPassword: '' });
+  const [register, setRegister] = useState({ nom: '', prenom: '', email: '', password: '', confirmPassword: '' });
   const [message, setMessage] = useState('');
 
   const handleLoginChange = e => {
@@ -24,7 +24,12 @@ function Connexion() {
         body: JSON.stringify(login),
       });
       const data = await res.json();
-      setMessage(data.message || 'Connexion réussie');
+      if (data.success) {
+        setUser({ prenom: data.prenom });
+        setMessage('');
+      } else {
+        setMessage(data.message || 'Erreur de connexion');
+      }
     } catch (err) {
       setMessage('Erreur lors de la connexion');
     }
@@ -61,6 +66,7 @@ function Connexion() {
       <h2>Inscription</h2>
       <form onSubmit={handleRegister}>
         <input type="text" name="nom" placeholder="Nom" value={register.nom} onChange={handleRegisterChange} required />
+        <input type="text" name="prenom" placeholder="Prenom" value={register.prenom} onChange={handleRegisterChange} required />
         <input type="email" name="email" placeholder="Email" value={register.email} onChange={handleRegisterChange} required />
         <input type="password" name="password" placeholder="Mot de passe" value={register.password} onChange={handleRegisterChange} required />
         <input type="password" name="confirmPassword" placeholder="Confirmer le mot de passe" value={register.confirmPassword} onChange={handleRegisterChange} required />
