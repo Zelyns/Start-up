@@ -1,34 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import './OrientationTest.css';
+import jsPDF from 'jspdf';
 
 function OrientationTest() {
-  const [form, setForm] = useState({
-    loisirs: '',
-    matieresPref: '',
-    pratiqueOuTheorique: '',
-    aideOuCreer: '',
-    journeeMetier: '',
-    matieresFortes: '',
-    matiereDifficile: '',
-    seulOuGroupe: '',
-    oral: '',
-    ecrit: '',
-    numerique: '',
-    stage: '',
-    organise: '',
-    decision: '',
-    dirigerOuExecuter: '',
-    probleme: '',
-    changement: '',
-    important: '',
-    lieu: '',
-    equilibre: '',
-    reve: '',
-    modele: '',
-    ideeMetier: '',
-    etudes: '',
-    filieres: '',
-  });
+  const initialForm = {
+    loisirs: '', matieresPref: '', pratiqueOuTheorique: '', aideOuCreer: '',
+    journeeMetier: '', matieresFortes: '', matiereDifficile: '', seulOuGroupe: '',
+    oral: '', ecrit: '', numerique: '', stage: '', organise: '', decision: '',
+    dirigerOuExecuter: '', probleme: '', changement: '', important: '', lieu: '',
+    equilibre: '', reve: '', modele: '', ideeMetier: '', etudes: '', filieres: ''
+  };
+
+  const [form, setForm] = useState(initialForm);
   const [result, setResult] = useState('');
+  const [progress, setProgress] = useState(0);
+
+  // Met à jour la progression en fonction du nombre de champs remplis
+  useEffect(() => {
+    const total = Object.keys(form).length;
+    const filled = Object.values(form).filter(v => v.trim() !== '').length;
+    setProgress(Math.round((filled / total) * 100));
+  }, [form]);
 
   const handleChange = e => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -36,124 +28,146 @@ function OrientationTest() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    // Logique très simple pour l'exemple :
-    if (
-      form.matieresFortes.toLowerCase().includes('math') ||
-      form.matieresFortes.toLowerCase().includes('physique') ||
-      form.pratiqueOuTheorique.toLowerCase().includes('pratique')
-    ) {
-      setResult('La meilleure orientation pour vous est : ingénieur');
-    } else if (
-      form.matieresFortes.toLowerCase().includes('svt') ||
-      form.matieresFortes.toLowerCase().includes('biologie') ||
-      form.reve.toLowerCase().includes('médecin')
-    ) {
-      setResult('La meilleure orientation pour vous est : médecine');
+    const fortes = form.matieresFortes.toLowerCase();
+    const reve = form.reve.toLowerCase();
+    const pratique = form.pratiqueOuTheorique.toLowerCase();
+
+    if (fortes.includes('math') || fortes.includes('physique') || pratique.includes('pratique')) {
+      setResult('🔧 La meilleure orientation pour vous est : ingénieur');
+    } else if (fortes.includes('svt') || fortes.includes('biologie') || reve.includes('médecin')) {
+      setResult('🩺 La meilleure orientation pour vous est : médecine');
     } else {
-      setResult('La meilleure orientation pour vous est : commerce');
+      setResult('💼 La meilleure orientation pour vous est : commerce');
     }
+  };
+
+  const handleDownload = () => {
+    const doc = new jsPDF();
+    doc.setFontSize(16);
+    doc.text('Résultat du test d’orientation', 20, 20);
+    doc.setFontSize(12);
+    doc.text(result, 20, 30);
+
+    let y = 40;
+    Object.entries(form).forEach(([key, value]) => {
+      doc.text(`${key} : ${value}`, 20, y);
+      y += 8;
+      if (y > 280) {
+        doc.addPage();
+        y = 20;
+      }
+    });
+
+    doc.save('resultat-orientation.pdf');
   };
 
   if (result) {
     return (
-      <div style={{ padding: '2rem' }}>
+      <div className="orientation-container">
         <h2>Résultat du test</h2>
-        <p>{result}</p>
+        <p style={{ fontSize: '1.2rem' }}>{result}</p>
         <button onClick={() => setResult('')}>Refaire le test</button>
+        <button onClick={handleDownload} style={{ marginLeft: '1rem' }}>📄 Télécharger le PDF</button>
       </div>
     );
   }
 
   return (
-    <div style={{ padding: '2rem' }}>
+    <div className="orientation-container">
       <h2>Test d’orientation</h2>
+
+      <div className="progress-bar">
+        <div className="progress" style={{ width: `${progress}%` }}></div>
+      </div>
+      <p style={{ textAlign: 'right', marginBottom: '1rem' }}>{progress}% complété</p>
+
       <form onSubmit={handleSubmit}>
         <h3>🧠 1. Centres d’intérêt</h3>
-        <label>Qu’est-ce que tu préfères faire pendant ton temps libre ?<br />
+        <label>Loisirs ?
           <input type="text" name="loisirs" value={form.loisirs} onChange={handleChange} required />
-        </label><br />
-        <label>Quel(s) sujet(s) t'intéressent le plus à l'école ? Pourquoi ?<br />
+        </label>
+        <label>Matières préférées ?
           <input type="text" name="matieresPref" value={form.matieresPref} onChange={handleChange} required />
-        </label><br />
-        <label>Préfères-tu des activités pratiques ou théoriques ?<br />
+        </label>
+        <label>Activités pratiques ou théoriques ?
           <input type="text" name="pratiqueOuTheorique" value={form.pratiqueOuTheorique} onChange={handleChange} required />
-        </label><br />
-        <label>Aimes-tu aider les autres, créer, résoudre des problèmes, organiser… ?<br />
+        </label>
+        <label>Aider, créer, organiser ?
           <input type="text" name="aideOuCreer" value={form.aideOuCreer} onChange={handleChange} required />
-        </label><br />
-        <label>Si tu pouvais passer une journée dans un métier, lequel choisirais-tu ?<br />
+        </label>
+        <label>Journée dans quel métier ?
           <input type="text" name="journeeMetier" value={form.journeeMetier} onChange={handleChange} required />
-        </label><br />
+        </label>
 
-        <h3>🛠 2. Compétences et matières scolaires</h3>
-        <label>Quelles matières réussis-tu le mieux ?<br />
+        <h3>🛠 2. Compétences & matières scolaires</h3>
+        <label>Matières fortes ?
           <input type="text" name="matieresFortes" value={form.matieresFortes} onChange={handleChange} required />
-        </label><br />
-        <label>Quelle matière trouves-tu la plus difficile ?<br />
+        </label>
+        <label>Matière difficile ?
           <input type="text" name="matiereDifficile" value={form.matiereDifficile} onChange={handleChange} required />
-        </label><br />
-        <label>Préfères-tu travailler seul ou en groupe ?<br />
+        </label>
+        <label>Seul ou en groupe ?
           <input type="text" name="seulOuGroupe" value={form.seulOuGroupe} onChange={handleChange} required />
-        </label><br />
-        <label>Te sens-tu à l’aise à l’oral ?<br />
+        </label>
+        <label>A l’oral ?
           <input type="text" name="oral" value={form.oral} onChange={handleChange} required />
-        </label><br />
-        <label>À l’écrit ?<br />
+        </label>
+        <label>A l’écrit ?
           <input type="text" name="ecrit" value={form.ecrit} onChange={handleChange} required />
-        </label><br />
-        <label>Avec les outils numériques ?<br />
+        </label>
+        <label>Numérique ?
           <input type="text" name="numerique" value={form.numerique} onChange={handleChange} required />
-        </label><br />
-        <label>As-tu déjà fait un stage ou un job ? Qu’en as-tu pensé ?<br />
+        </label>
+        <label>Stage ou job ?
           <input type="text" name="stage" value={form.stage} onChange={handleChange} required />
-        </label><br />
+        </label>
 
-        <h3>💡 3. Personnalité et traits comportementaux</h3>
-        <label>Te considères-tu comme plutôt organisé(e) ou spontané(e) ?<br />
+        <h3>💡 3. Personnalité</h3>
+        <label>Organisé ou spontané ?
           <input type="text" name="organise" value={form.organise} onChange={handleChange} required />
-        </label><br />
-        <label>Prends-tu facilement des décisions ?<br />
+        </label>
+        <label>Décisions faciles ?
           <input type="text" name="decision" value={form.decision} onChange={handleChange} required />
-        </label><br />
-        <label>Préfères-tu diriger un projet ou exécuter des consignes ?<br />
+        </label>
+        <label>Diriger ou exécuter ?
           <input type="text" name="dirigerOuExecuter" value={form.dirigerOuExecuter} onChange={handleChange} required />
-        </label><br />
-        <label>Comment réagis-tu face à un problème complexe ?<br />
+        </label>
+        <label>Face aux problèmes ?
           <input type="text" name="probleme" value={form.probleme} onChange={handleChange} required />
-        </label><br />
-        <label>Es-tu à l’aise avec le changement et la nouveauté ?<br />
+        </label>
+        <label>À l’aise avec le changement ?
           <input type="text" name="changement" value={form.changement} onChange={handleChange} required />
-        </label><br />
+        </label>
 
-        <h3>🌍 4. Valeurs et aspirations</h3>
-        <label>Qu’est-ce qui est le plus important pour toi dans un futur métier ?<br />
+        <h3>🌍 4. Valeurs & aspirations</h3>
+        <label>Ce qui est important ?
           <input type="text" name="important" value={form.important} onChange={handleChange} required />
-        </label><br />
-        <label>Te vois-tu travailler dans un bureau, en extérieur, avec des gens, avec des machines… ?<br />
+        </label>
+        <label>Bureau, extérieur, machines ?
           <input type="text" name="lieu" value={form.lieu} onChange={handleChange} required />
-        </label><br />
-        <label>Quelle importance donnes-tu à l’équilibre vie professionnelle / vie personnelle ?<br />
+        </label>
+        <label>Équilibre vie pro/perso ?
           <input type="text" name="equilibre" value={form.equilibre} onChange={handleChange} required />
-        </label><br />
-        <label>Quel est ton rêve professionnel ?<br />
+        </label>
+        <label>Ton rêve ?
           <input type="text" name="reve" value={form.reve} onChange={handleChange} required />
-        </label><br />
-        <label>As-tu des modèles ou des personnes que tu admires pour leur parcours ?<br />
+        </label>
+        <label>Modèles ?
           <input type="text" name="modele" value={form.modele} onChange={handleChange} required />
-        </label><br />
+        </label>
 
         <h3>📈 5. Projet d’avenir</h3>
-        <label>As-tu déjà une idée du métier ou du domaine qui t’intéresse ?<br />
+        <label>Idée de métier ?
           <input type="text" name="ideeMetier" value={form.ideeMetier} onChange={handleChange} required />
-        </label><br />
-        <label>As-tu envisagé des études après le bac ? Lesquelles ?<br />
+        </label>
+        <label>Études après bac ?
           <input type="text" name="etudes" value={form.etudes} onChange={handleChange} required />
-        </label><br />
-        <label>Es-tu déjà renseigné(e) sur les filières (pro, techno, générale, BTS, BUT, fac, prépa…) ?<br />
+        </label>
+        <label>Filières connues ?
           <input type="text" name="filieres" value={form.filieres} onChange={handleChange} required />
-        </label><br />
+        </label>
 
-        <button type="submit" style={{ marginTop: '1rem' }}>Envoyer</button>
+        <button type="submit">Envoyer</button>
       </form>
     </div>
   );

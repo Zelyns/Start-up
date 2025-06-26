@@ -1,0 +1,77 @@
+.orientation-container {
+  padding: 3rem 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.orientation-container h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #00ABE4;
+  text-align: center;
+}
+
+.orientation-container h3 {
+  margin-top: 2rem;
+  font-size: 1.3rem;
+  color: #005a78;
+  margin-bottom: 1rem;
+}
+
+.orientation-container label {
+  display: block;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.orientation-container input[type="text"] {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-top: 8px;
+  background-color: #f8fbff;
+}
+
+.orientation-container input[type="text"]:focus {
+  border-color: #00ABE4;
+  outline: none;
+  background-color: #ffffff;
+}
+
+.orientation-container button[type="submit"],
+.orientation-container button {
+  background-color: #00ABE4;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.orientation-container button:hover {
+  background-color: #008FC5;
+}
+
+@media (max-width: 600px) {
+  .orientation-container {
+    padding: 2rem 1rem;
+  }
+
+  .orientation-container h2 {
+    font-size: 1.6rem;
+  }
+
+  .orientation-container input[type="text"] {
+    font-size: 0.95rem;
+  }
+}
