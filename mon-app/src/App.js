@@ -12,6 +12,7 @@ import Developpeur from './metier/Developpeur';
 import Medecin from './metier/Medecin';
 import Commerce from './metier/Commerce';
 import Ingenieur from './metier/Ingenieur';
+import ChoixProfessionnel from './ChoixProfessionnel';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -30,6 +31,7 @@ function App() {
           {/* Pages métier */}
           <Route path="/metier/developpeur" element={<Developpeur />} />
           <Route path="/metier/medecin" element={<Medecin />} />
+          <Route path="/rdv" element={<ChoixProfessionnel />} />
           <Route path="/metier/commerce" element={<Commerce />} />
           <Route path="/metier/ingenieur" element={<Ingenieur />} />
         </Routes>

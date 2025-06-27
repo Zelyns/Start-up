@@ -23,8 +23,26 @@ function Ingenieur() {
           <p>Ingénieur logiciel, industriel, data, R&D, etc.</p>
         </div>
       </div>
+      <button
+        style={{
+          marginTop: "2rem",
+          backgroundColor: "#00ABE4",
+          color: "white",
+          border: "none",
+          borderRadius: "8px",
+          padding: "12px 24px",
+          fontSize: "1rem",
+          fontWeight: "bold",
+          cursor: "pointer"
+        }}
+        onClick={() => window.location.href = "/rdv"}
+      >
+        Prendre RDV avec un professionnel
+      </button>
     </div>
+    
   );
 }
+
 
 export default Ingenieur;
