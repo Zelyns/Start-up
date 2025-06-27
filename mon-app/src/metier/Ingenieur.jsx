@@ -1,12 +1,15 @@
 import React from 'react';
 import './Metiers.css';
 
-function Ingenieur() {
+function Ingenieure() {
   return (
     <div className="metier-container">
-      <h1>Métier : Ingénieur</h1>
+      <h1>Métier : Ingénieure</h1>
+
       <p className="description">
-        L’ingénieur conçoit, améliore ou supervise des systèmes complexes dans des domaines variés : informatique, industrie, environnement, etc.
+        L’ingénieure conçoit, analyse et développe des solutions techniques dans des domaines variés :
+        informatique, construction, énergie, biotechnologie, aéronautique... Elle joue un rôle clé dans l’innovation
+        et la résolution de problèmes complexes.
       </p>
 
       <div className="metier-infos">

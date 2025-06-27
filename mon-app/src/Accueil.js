@@ -13,7 +13,9 @@ function Accueil() {
               OrienTech t’aide à trouver les métiers faits pour toi grâce à un test rapide
               et des conseils personnalisés.
             </p>
-            <a href="/orientation" className="cta-button">Faire le test d’orientation</a>
+            <button>
+              <a href="/orientation" className="cta-button">Faire le test d’orientation</a>
+            </button>
           </div>
           <div className="hero-image">
             <img src={illustration} alt="Orientation illustration" />
