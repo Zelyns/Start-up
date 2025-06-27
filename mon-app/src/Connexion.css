@@ -36,20 +36,30 @@
   background-color: #fff;
 }
 
-.form-section button {
-  background-color: #00ABE4;
-  color: white;
-  padding: 12px;
-  border: none;
-  border-radius: 8px;
+button {
+  padding: 12.5px 30px;
+  border: 0;
+  border-radius: 100px;
+  background-color: #2ba8fb;
+  color: #ffffff;
+  font-weight: Bold;
   font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
 }
 
-.form-section button:hover {
-  background-color: #008FC5;
+button:hover {
+  background-color: #6fc5ff;
+  box-shadow: 0 0 20px #6fc5ff50;
+  transform: scale(1.1);
+}
+
+button:active {
+  background-color: #3d94cf;
+  transition: all 0.25s;
+  -webkit-transition: all 0.25s;
+  box-shadow: none;
+  transform: scale(0.98);
 }
 
 .message {

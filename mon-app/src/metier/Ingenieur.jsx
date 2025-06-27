@@ -1,30 +1,56 @@
 import React from 'react';
 import './Metiers.css';
 
-function Ingenieur() {
+function Ingenieure() {
   return (
     <div className="metier-container">
-      <h1>Métier : Ingénieur</h1>
+      <h1>Métier : Ingénieure</h1>
+
       <p className="description">
-        L’ingénieur conçoit, améliore ou supervise des systèmes complexes dans des domaines variés : informatique, industrie, environnement, etc.
+        L’ingénieure conçoit, analyse et développe des solutions techniques dans des domaines variés :
+        informatique, construction, énergie, biotechnologie, aéronautique... Elle joue un rôle clé dans l’innovation
+        et la résolution de problèmes complexes.
       </p>
 
-      <div className="metier-infos">
-        <div className="info-block">
-          <h3>🧠 Compétences</h3>
-          <p>Analyse, technique, logique, créativité, rigueur</p>
-        </div>
-        <div className="info-block">
-          <h3>🎓 Formations</h3>
-          <p>Bac+5 (école d'ingénieur, Master en sciences ou technologies)</p>
-        </div>
-        <div className="info-block">
-          <h3>🚀 Débouchés</h3>
-          <p>Ingénieur logiciel, industriel, data, R&D, etc.</p>
-        </div>
-      </div>
+      <section className="metier-section">
+        <h2>🎯 Missions principales</h2>
+        <ul>
+          <li>Analyser des besoins techniques et fonctionnels</li>
+          <li>Concevoir des produits ou systèmes complexes</li>
+          <li>Superviser la réalisation et les tests</li>
+          <li>Assurer la gestion de projets techniques</li>
+        </ul>
+      </section>
+
+      <section className="metier-section">
+        <h2>📊 Spécialisations possibles</h2>
+        <ul>
+          <li>Ingénieure informatique / logiciel</li>
+          <li>Ingénieure en environnement</li>
+          <li>Ingénieure en mécanique, électronique, énergie</li>
+          <li>Ingénieure R&D, en aéronautique, biomédical...</li>
+        </ul>
+      </section>
+
+      <section className="metier-section">
+        <h2>💼 Évolution de carrière</h2>
+        <ul>
+          <li>Cheffe de projet technique</li>
+          <li>Responsable R&D</li>
+          <li>Directrice d’ingénierie ou CTO</li>
+        </ul>
+      </section>
+
+      <section className="metier-section">
+        <h2>💰 Salaires estimés</h2>
+        <ul>
+          <li>Débutante : 35 000€ – 42 000€</li>
+          <li>Confirmée : 45 000€ – 60 000€</li>
+          <li>Sénior / Manager : 65 000€ – 90 000€+</li>
+        </ul>
+      </section>
     </div>
   );
 }
 
-export default Ingenieur;
+export default Ingenieure;
